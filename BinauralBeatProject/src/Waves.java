@@ -6,7 +6,6 @@ public class Waves {
 
 	double overallFrequency;
 	String type;
-	String stateOfConsciousness;
 	double pulse;
 	BinauralBeat beat;
 	
@@ -55,36 +54,44 @@ public class Waves {
 			return 0.997;
 		}
 		else {
-			return 0.5;
+			return 0.6688;
 		}
 	}
 	
 	
-	//CAN CREATE NUMBERS / BS THIS FOR THIS WITH MAXFIELD STUDY??
+	//MAXFIELD STUDY
 	//ALSO RANDOMIZE NUMBERS W RNG
 	public double MaxfieldValues() {
+		//System.out.println("PULSE: " + this.beat.pulse());
 		if(this.beat.pulse() > 3.0 && this.beat.pulse() < 4.0 && this.type == "theta")
-			//CREATE COEFF
-			return 1.002;
+			return 1.002 + (0.01* Math.random() - 0.005);
 		else if(this.beat.pulse() > 4.5 && this.beat.pulse() < 5.5 && this.type == "theta")
-			//CREATE COEFF
-			return 0.999;
+			return 0.999 + (0.01* Math.random() - 0.005);
 		else if(this.beat.pulse() > 4.0 && this.beat.pulse() < 4.5 && this.type == "theta")
-			//CREATE COEFF
-			return 1.101;
+			return 1.101 + (0.01* Math.random() - 0.005);
 		else if(this.beat.pulse() > 4.0 && this.beat.pulse() < 4.5 && this.type == "alpha")
-			// CREATE COEFF
-			return 1.222;
+			return 1.222 + (0.01* Math.random() - 0.005);
 		else if(this.beat.pulse() > 4.0 && this.beat.pulse() < 4.5 && this.type == "beta")
-			//CREATE COEFF
-			return 0.991;
+			return 0.991 + (0.01* Math.random() - 0.005);
 		else
-			return 0.878;
+			return 0.878 + (0.4* Math.random() - 0.005);
 	}
 
 	
+	public double finalEfficiencyRate() {
+		double check = 0.0;
+		if (this.beat.TablaOrNot && this.AmplitudeMatch()) { 
+			check = 0.08 * Math.random() - 0.008;
+		}
+		else if(this.beat.TablaOrNot && !this.AmplitudeMatch()) {
+			check = 0.03 * Math.random() - 0.008;
+		}
+		//System.out.println("YO RIGHT HERE: " + this.MaxfieldValues() * this.AmplitudeCoeff());
+		return this.MaxfieldValues() * this.AmplitudeCoeff() + check;
+	}
+	
 	//CONSTRUCTOR
-	public Waves(double freq, String state, BinauralBeat bb) {
+	public Waves(double freq, BinauralBeat bb) {
 		overallFrequency = freq;
 		//need method for how freq defines wave
 		
@@ -107,7 +114,6 @@ public class Waves {
 			}
 		
 		
-		stateOfConsciousness = state;
 		pulse = bb.pulse();
 		beat = bb;
 		
@@ -119,16 +125,16 @@ public class Waves {
 			this.areaOfBrainAffected = "occipital lobe, visual cortex";
 			System.out.println(this.areaOfBrainAffected);
 		}
-		if (this.type == "beta") {
+		else if (this.type == "beta") {
 			
 		}
-		if (this.type == "theta") {
+		else if (this.type == "theta") {
 			
 		}
-		if (this.type == "delta") {
+		else if (this.type == "delta") {
 			
 		}
-		if (this.type == "gamma") {
+		else if (this.type == "gamma") {
 			
 		}
 	}

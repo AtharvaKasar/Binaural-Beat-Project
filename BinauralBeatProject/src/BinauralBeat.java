@@ -42,19 +42,19 @@ public class BinauralBeat {
 			efficiency = "perfect";
 		}
 		
-		System.out.println(efficiency);
+		//System.out.println(efficiency);
 		
 		//NEED TO FIX THIS PART
 		if(this.TablaOrNot == true && efficiency == "not good") {
-			//BS THE 0.8 part. this is assuming that having tabla weakens the pulse a little
+			//this is assuming that having tabla weakens the pulse a little
 			return 0.2 * this.BeatsPerSecondOfRhythm;
 		}
 		else if(this.TablaOrNot == true && efficiency == "good") {
-			//BS THE 0.8 part. this is assuming that having tabla weakens the pulse a little
+			//this is assuming that having tabla weakens the pulse a little
 			return 0.6 * this.BeatsPerSecondOfRhythm;
 		}
 		else if(this.TablaOrNot == true && efficiency == "very good") {
-			//BS THE 0.8 part. this is assuming that having tabla weakens the pulse a little
+			//this is assuming that having tabla weakens the pulse a little
 			return 0.9 * this.BeatsPerSecondOfRhythm;
 		}
 		else {
@@ -138,7 +138,7 @@ public class BinauralBeat {
 		}
 	}
 	
-	//HOW DOES TABLA AFFECT CONSISTENCY OF FREQUENCY? Can BS a coefficient?
+	//HOW DOES TABLA AFFECT CONSISTENCY OF FREQUENCY? coefficient?
 	public double FrequencyConsistencyCoefficient() {
 		double rand = Math.random();
 		if(this.TablaOrNot == true && rand <0.778) {
@@ -152,19 +152,13 @@ public class BinauralBeat {
 	}
 	
 	
+
+	public void setBeatsPerSecond(double n){
+		if(this.TablaOrNot) this.BeatsPerSecondOfRhythm = n;
+	}
 	
-	//SETTING THE FREQUENCY VALUES OF TABLA BASED ON PITCH. BS VALUES
-	public void PitchToFrequency() {
-		if (this.TablaOrNot == true) {
-			if(this.TablaPitch == "C") {
-				this.TablaFrequencyMax = 290.0;
-				this.TablaFrequencyMin = 230.0;
-			}
-			if(this.TablaPitch == "A") {
-				this.TablaFrequencyMax = 470.0;
-				this.TablaFrequencyMin = 230.0;
-			}
-		}
+	public void setTablaPitch(String pitch){
+		if(this.TablaOrNot) this.TablaPitch = pitch;
 	}
 	
 	
@@ -174,6 +168,7 @@ public class BinauralBeat {
 		diff = Math.abs(frequencyRangeMax - frequencyRangeMin);
 		amplitude = amp;
 		TablaOrNot = tab;
+		TablaPitch = "C";
 		
 		if (tab != true) {
 			double BeatsPerSecondOfRhythm = 0.0;
